@@ -11,8 +11,7 @@ to test it on another device setup.
 If you want to clone + run the repo, create a `.env` file with the following fields:  
 `VM_IP="<your-vm-ip-addr>"`  
 `VM_USERNAME="<your-vm-username>"`  
-`VM_PASSWORD="<your-vm-password>"`  
-`SERVER_IP = "<your-local-machine-ip>"`
+`VM_PASSWORD="<your-vm-password>"`
 
 Please note that it is much more secure to forego the VM password being hardcoded, and that an ssh
 key should really be used. I am planning on switching this, I'm just focusing on finishing the tool first.

@@ -8,21 +8,10 @@ VM_IP = os.getenv("VM_IP")
 VM_USERNAME = os.getenv("VM_USERNAME")
 VM_PASSWORD = os.getenv("VM_PASSWORD")
 
-def main():
-    print('Connecting to client...')
-    # pings google server 5 times, outputs results.
-    # can be used to test that ssh connection is succesful
-    try: 
-        output, err = exec_cmd("ping -c 5 8.8.8.8")
-        print(output)
-        if err != '':
-            print('err:', err)
-    except: 
-        print('Error executing cmd. Are you connected to the internet?')
     
 
 # Run command on ssh
-def exec_cmd(cmd):
+def exec_cmd(cmd, kill_cmd=None):
     # open ssh
     vm = paramiko.client.SSHClient()
     vm.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -30,15 +19,16 @@ def exec_cmd(cmd):
 
     # execute command, decode output
     _, stdout, stderr = vm.exec_command(cmd)
+    stdout.channel.recv_exit_status() 
     output = stdout.read().decode()
     error = stderr.read().decode()
+    if error is not '':
+        print('Client error:', error)
+
+    if kill_cmd is not None:
+        # ensure no remote processes are left hanging
+        vm.exec_command(kill_cmd)
 
     # close connection
     vm.close()
     return output, error
-
-
-    
-
-if __name__ == "__main__":
-    main()

@@ -1,0 +1,23 @@
+{
+  "start": {
+    "connected": [...],       // Connection details
+    "version": "...",         // iperf3 version
+    "system_info": "...",     // System information
+    "timestamp": {...},       // Test start time
+    "test_start": {...}       // Test parameters
+  },
+  "intervals": [              // Array of interval results
+    {
+      "streams": [...],       // Per-stream measurements for this interval
+      "sum": {...}            // Aggregated measurements for this interval
+    },
+    ...
+  ],
+  "end": {
+    "streams": [...],         // Final per-stream statistics
+    "sum_sent": {...},        // Aggregated statistics for sent data
+    "sum_received": {...},    // Aggregated statistics for received data
+    "cpu_utilization_percent": {...}  // CPU usage statistics
+  },
+  "server_output_json": {...} // Optional server results
+}
