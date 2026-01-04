@@ -40,6 +40,10 @@ key should really be used. I am planning on switching this, I'm just focusing on
 
 Additionally, create a `.logs/` folder for all of the server/client output.
 
+## How To Run
+
+To perform an analysis, run `python bench.py` from the root directory. Before executing the performance analysis, it will test the connection to ensure that your `.env` file has been set up correctly. It will prompt you to ask if you want it to run a TCP test, UDP test, or both. It will then print out performance statistics and analysis. After printing, it will ask if you would like to see the network performance visualized, which will open as plots in a separate window.
+
 # References
 
 Thanks to the below sources for helping me teach myself this process!

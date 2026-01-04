@@ -15,7 +15,7 @@ def exec_cmd(cmd, kill_cmd=None):
     # open ssh
     vm = paramiko.client.SSHClient()
     vm.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    vm.connect(VM_IP, username=VM_USERNAME, password=VM_PASSWORD)
+    vm.connect(VM_IP, username=VM_USERNAME, password=VM_PASSWORD, timeout=5)
 
     # execute command, decode output
     _, stdout, stderr = vm.exec_command(cmd)

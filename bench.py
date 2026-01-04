@@ -5,6 +5,7 @@ from iperf.server import open_server
 from iperf.client import exec_cmd
 from util import get_mac_ip_addr
 from parser import parse_tcp_results, parse_udp_results
+from plot import plot_tcp, plot_udp
 import sys
 import json
 
@@ -55,6 +56,16 @@ def main():
         parse_udp_results()
     print()
     print('Finished running analysis.')
+    print('Would you like to plot the test results? (y/n)')
+    showPlots = input().lower()
+    if showPlots == 'y' or showPlots == 'yes':
+        # show plots! 
+        if option == '1' or option == '3':
+            # plot TCP results
+            plot_tcp()
+        if option == '2' or option == '3':
+            # plot UDP results 
+            plot_udp()
 
 # run a TCP iperf test
 def run_tcp_test(server_ip):
